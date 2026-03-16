@@ -183,8 +183,6 @@ These features correspond to known attack behaviors such as traffic flooding, ab
 
 The analysis demonstrates that machine learning can identify abnormal traffic patterns associated with common cyber attacks.
 
-For example:
-
 Attack Type	Detected Pattern
 DDoS	Extremely high traffic rate
 Port Scans	High number of short flows
