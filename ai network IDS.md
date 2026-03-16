@@ -83,8 +83,20 @@ print(encoder.classes_)
 
 ### Train/Test Split
 
+The dataset is split into training and testing sets.
 
+Training set (80%) is used to train the model
 
+Testing set (20%) is used to evaluate performance
+
+This ensures the model is evaluated on unseen data, preventing overfitting.
+```
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y,
+    test_size=0.2,
+    random_state=42
+)
+```
 
 
 
