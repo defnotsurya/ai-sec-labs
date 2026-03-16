@@ -97,6 +97,101 @@ X_train, X_test, y_train, y_test = train_test_split(
     random_state=42
 )
 ```
+### Feature Scaling
+
+Network traffic features can vary widely in scale. For example:
+
+Packet sizes may range between 0–1500 bytes
+
+Flow duration may reach millions of microseconds
+
+To normalize these values, the dataset is standardized using a StandardScaler.
+
+This transformation ensures all features contribute equally during model training.
+```
+scaler = StandardScaler()
+
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+```
+
+### Model Training
+
+The intrusion detection system uses a Random Forest classifier, an ensemble learning method that combines multiple decision trees.
+
+Each decision tree learns patterns in the traffic data that distinguish benign behavior from attack activity.
+
+The final prediction is determined through majority voting across the trees.
+```
+model = RandomForestClassifier(
+n_estimators=100,
+random_state=42,
+n_jobs=-1
+)
+
+model.fit(X_train, y_train)
+```
+]
+
+## Model Evaluation
+
+### Confusion Matrix
+
+The confusion matrix shows how predictions compare to actual labels.
+
+Example structure:
+
+Actual - BENIGN, DDoS, PortScan
+
+Predicted - BENIGN, DDoS, BENIGN
+
+This helps identify:
+
+False positives (benign traffic flagged as attack) and ]]False negatives (attacks missed by the system)
+
+|                   | Predicted BENIGN | Predicted ATTACK |
+| ----------------- | ---------------- | ---------------- |
+| **Actual BENIGN** | 37765            | 0                |
+| **Actual ATTACK** | 34               | 384              |
+
+<img width="196" height="81" alt="Screenshot 2026-03-16 175627" src="https://github.com/user-attachments/assets/66e0ed1a-279c-4e08-b33c-cd1018aaf923" />
+
+### Classification Metrics
+
+The following metrics provide deeper performance insight:
+
+Metric	Meaning
+Precision	Percentage of predicted attacks that were actually malicious
+Recall	Percentage of real attacks correctly detected
+F1 Score	Balance between precision and recall
+
+For intrusion detection systems, high recall is critical, since missed attacks represent security risks.
+
+<img width="414" height="169" alt="Screenshot 2026-03-16 175636" src="https://github.com/user-attachments/assets/44b21488-7391-467b-9d8f-c65ac00ab76e" />
+
+## Feature Importance Analysis
+
+Random Forest models provide feature importance scores that indicate which network traffic characteristics influenced predictions the most.
+
+The following visualization highlights the top features used for attack detection.
+
+<img width="1029" height="520" alt="image" src="https://github.com/user-attachments/assets/45536bf9-db76-4a0b-bd73-40c6e52286ca" />
+
+These features correspond to known attack behaviors such as traffic flooding, abnormal packet patterns, and high-volume scanning activity
+
+## Security Insights
+
+The analysis demonstrates that machine learning can identify abnormal traffic patterns associated with common cyber attacks.
+
+For example:
+
+Attack Type	Detected Pattern
+DDoS	Extremely high traffic rate
+Port Scans	High number of short flows
+Botnet Activity	Repeated automated packet behavior
+
+These insights highlight how AI driven detection systems can augment traditional network security monitoring.
+
 
 
 
