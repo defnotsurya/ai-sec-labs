@@ -183,10 +183,11 @@ These features correspond to known attack behaviors such as traffic flooding, ab
 
 The analysis demonstrates that machine learning can identify abnormal traffic patterns associated with common cyber attacks.
 
-Attack Type	Detected Pattern
-DDoS	Extremely high traffic rate
-Port Scans	High number of short flows
-Botnet Activity	Repeated automated packet behavior
+| Attack Type     | Detected Pattern                   |
+| --------------- | ---------------------------------- |
+| DDoS            | Extremely high traffic rate        |
+| Port Scans      | High number of short flows         |
+| Botnet Activity | Repeated automated packet behavior |
 
 These insights highlight how AI driven detection systems can augment traditional network security monitoring.
 
